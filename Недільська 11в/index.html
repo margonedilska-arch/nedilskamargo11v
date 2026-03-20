@@ -1,0 +1,185 @@
+<<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FoodDelivery</title>
+<style>
+/* ===== Загальні стилі ===== */
+body { font-family: Arial, sans-serif; margin:0; background:#f5f5f5; color:#333; }
+h1,h2,h3 { margin:0.5em 0; }
+header { background:#2196F3; color:white; padding:20px; text-align:center; box-shadow:0 4px 8px rgba(0,0,0,0.2); }
+
+/* ===== Меню ===== */
+.menu { background:#2196F3; display:flex; flex-wrap:wrap; padding:10px 20px; align-items:center; gap:10px; box-shadow:0 3px 8px rgba(0,0,0,0.2);}
+.menu a { text-decoration:none; color:white; padding:10px 16px; border-radius:8px; cursor:pointer; transition:0.3s; }
+.menu a:hover { background-color:#0b7dda; }
+.dropdown { position:relative; }
+.dropdown-content { display:none; position:absolute; top:40px; left:0; background:white; min-width:180px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.2); overflow:hidden; z-index:10;}
+.dropdown-content a { display:block; color:black; padding:10px; background:white; transition:0.2s; }
+.dropdown-content a:hover { background:#f1f1f1; }
+.dropdown:hover .dropdown-content { display:block; }
+
+/* ===== Основний контент ===== */
+main { padding:20px; }
+.section { display:none; animation:fadeIn 0.4s ease; }
+.section.active { display:block; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+/* ===== Герой-секція ===== */
+.hero { background:white; padding:40px; border-radius:12px; text-align:center; margin-bottom:30px; box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+.hero button { background:#2196F3; color:white; border:none; padding:12px 24px; border-radius:8px; font-size:16px; cursor:pointer; transition:0.3s; }
+.hero button:hover { background:#0b7dda; }
+
+/* ===== Карточки ресторанів ===== */
+.cards { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+.card { background:white; border-radius:12px; padding:15px; width:250px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.1); transition:0.3s; }
+.card img { width:100%; border-radius:12px; height:180px; object-fit:cover; }
+.card:hover { transform:scale(1.05); }
+
+/* ===== Картки комбо та акцій ===== */
+.combo { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-top:20px; }
+.combo .card { width:250px; }
+
+/* ===== Кнопки замовлення ===== */
+.order-btn { background:#ff5722; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; transition:0.3s; margin-top:10px;}
+.order-btn:hover { background:#e64a19; }
+
+/* ===== Футер ===== */
+footer { text-align:center; padding:20px; background:#2196F3; color:white; margin-top:30px; }
+
+/* ===== Мобільна адаптивність ===== */
+@media(max-width:768px){
+    .cards, .combo { flex-direction:column; align-items:center; }
+    .menu { justify-content:center; }
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>FoodDelivery</h1>
+</header>
+
+<nav class="menu">
+<a onclick="showSection('home')">Головна</a>
+<div class="dropdown">
+<a>Ресторан за кухнею ▾</a>
+<div class="dropdown-content">
+<a onclick="showSection('ukr')">Українська кухня</a>
+<a onclick="showSection('ita')">Італійська кухня</a>
+<a onclick="showSection('asia')">Азійська кухня</a>
+</div>
+</div>
+<a onclick="showSection('promotions')">Акції</a>
+<a onclick="showSection('tracking')">Відстеження</a>
+<a onclick="showSection('payment')">Оплата</a>
+<a onclick="showSection('cart')">Кошик 🛒</a>
+<a onclick="showSection('about')">Про сервіс</a>
+</nav>
+
+<main>
+<section id="home" class="section active">
+<div class="hero">
+<h2>Замовляйте їжу з найкращих ресторанів вашого міста</h2>
+<p>Швидка доставка та найсмачніші страви прямо до вашого дому.</p>
+<button class="order-btn" onclick="showSection('promotions')">Замовити зараз</button>
+</div>
+<div class="restaurants">
+<h2>Популярні ресторани</h2>
+<div class="cards">
+<div class="card">
+<img src="https://prontopizza.ua/wp-content/uploads/2024/09/yak-pryhotuvaty-pitsu.jpg"alt="Pizza House">
+<h3>Pizza House</h3>
+<p>Італійська кухня 🍕</p>
+<button class="order-btn" onclick="showSection('ita')">Переглянути меню</button>
+</div>
+<div class="card">
+<img src="https://ye.ua/images/news/_TOP_5_naykorisnishih_strav_ukrayinskoyi_kuhni_1_2019_08_30_09_03_13.jpg" alt="Kyiv Bistro">
+<h3>Kyiv Bistro</h3>
+<p>Українська кухня 🥟</p>
+<button class="order-btn" onclick="showSection('ukr')">Переглянути меню</button>
+</div>
+<div class="card">
+<img src="https://noa.ua/wp-content/uploads/2025/05/asian-czezar-eksp-sajt.jpg" alt="Asian Express">
+<h3>Asian Express</h3>
+<p>Азійська кухня 🍣</p>
+<button class="order-btn" onclick="showSection('asia')">Переглянути меню</button>
+</div>
+</div>
+</div>
+</section>
+
+<section id="ukr" class="section">
+<h2>Українська кухня</h2>
+<p>Смачні традиційні страви: борщ, вареники, деруни.</p>
+<div class="cards">
+<div class="card"><img src="https://shuba.life/static/content/thumbs/1824x912/0/96/6i7wrh---c2x1x50px50p-up--179fb98cd2a98bfe2b4faeb469a30960.jpg" alt="Вареники"><h3>Вареники</h3><p>З картоплею, капустою або вишнями.</p></div>
+</div>
+</section>
+
+<section id="ita" class="section">
+<h2>Італійська кухня</h2>
+<div class="cards">
+<div class="card"><img src="https://franklintravel.pro/wp-content/uploads/2022/09/italy-cuisine-lasagna.jpg" alt="Піца"><h3>Піца Маргарита</h3><p>Соковита італійська піца з томатами та моцарелою.</p></div>
+<div class="card"><img src="https://retsepty.in.ua/wp-content/uploads/2024/06/image-43-550x550.jpg" alt="Паста"><h3>Паста Карбонара</h3><p>Класична паста з вершковим соусом і беконом.</p></div>
+</div>
+</section>
+
+<section id="asia" class="section">
+<h2>Азійська кухня</h2>
+<div class="cards">
+<div class="card"><img src="https://vilki-palki.od.ua/storage/img/52/2b/%D0%9A%D0%B0%D0%BB%D0%B8%D1%84%D0%BE%D1%80%D0%BD%D0%B8%D1%8F%D1%81%D1%83%D0%B3%D1%80%D0%B5%D0%BC.jpg" alt="Суші"><h3>Суші-сет</h3><p>Ролли з лососем, тунцем і авокадо.</p></div>
+<div class="card"><img src="https://sobitie.com.ua/wp-content/uploads/2024/02/aziatska-kuhnya.jpg" alt="Вок"><h3>Вок з овочами</h3><p>Швидке та смачне блюдо з локшиною і овочами.</p></div>
+</div>
+</section>
+
+<section id="promotions" class="section">
+<h2>Акції та знижки</h2>
+<div class="combo">
+<div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuFFtAFngRzK-1Y95MvhnRrr1_gUH0iUt3-A&s" alt="Комбо-набір"><h3>Комбо-набір</h3><p>Піца + напій + десерт зі знижкою 20%</p></div>
+<div class="card"><img src= alt="Промокод">"https://www.tourclub.com.ua/media/image/general_fotos/akciji.jpg"<h3>Промокод</h3><p>Отримайте знижку 10% на перше замовлення.</p></div>
+</div>
+</section>
+
+<section id="tracking" class="section">
+<h2>Відстеження замовлення</h2>
+<p>Перевіряйте статус вашого замовлення та час доставки.</p>
+</section>
+
+<section id="payment" class="section">
+<h2>Оплата</h2>
+<p>Ви можете оплатити замовлення карткою, готівкою або онлайн.</p>
+<ul>
+<li>Кредитні та дебетові картки</li>
+<li>Apple Pay / Google Pay</li>
+<li>Готівка кур’єру</li>
+</ul>
+</section>
+
+<section id="cart" class="section">
+<h2>Кошик</h2>
+<p>Ваші обрані товари відображатимуться тут.</p>
+</section>
+
+<section id="about" class="section">
+<h2>Про сервіс</h2>
+<p>Ми доставляємо їжу швидко та смачно по всьому місту. Наш сервіс працює 24/7.</p>
+</section>
+
+</main>
+
+<footer>
+<p>© 2026 FoodDelivery. Всі права захищені.</p>
+</footer>
+
+<script>
+function showSection(id){
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0,0);
+}
+</script>
+
+</body>
+</html>
